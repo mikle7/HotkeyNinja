@@ -9,7 +9,7 @@ const hotkeys = [
 
 const HotkeyGame = () => {
   const [expectedKeys, setExpectedKeys] = useState<string[]>(hotkeys[0]);
-  const [keysPressed, setKeysPressed] = useState([]);
+  const [keysPressed, setKeysPressed] = useState<string[]>([]);
   const [currentHotkeyIndex, setCurrentHotkeyIndex] = useState(0);
   const [currentExpectedKeyIndex, setCurrentExpectedKeyIndex] = useState(0);
   const [gameStatus, setGameStatus] = useState("");
@@ -19,7 +19,9 @@ const HotkeyGame = () => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       setKeysPressed((prevKeysPressed) => [...prevKeysPressed, event.key]);
-
+      if (event.key === "Control") {
+        setControlPressed(true);
+      }
       event.preventDefault();
     };
     const handleKeyUp = (event) => {
@@ -48,7 +50,7 @@ const HotkeyGame = () => {
           correct = false;
           break;
         }
-        if (keysPressed[i] !== expectedKeys[i]) {
+        if (keysPressed[i]?.toLowerCase() !== expectedKeys[i]?.toLowerCase()) {
           correct = false;
           break;
         }
@@ -64,6 +66,7 @@ const HotkeyGame = () => {
     } else {
       if (keysPressed.length > 0) {
         for (let i = 0; i < keysPressed.length; i++) {
+          setCurrentExpectedKeyIndex(keysPressed.length);
           if (keysPressed[i] !== expectedKeys[i]) {
             setGameStatus("Incorrect!");
             loadNextGame();
