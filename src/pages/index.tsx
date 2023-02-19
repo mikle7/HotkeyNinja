@@ -35,20 +35,17 @@ const Home: NextPage = () => {
     if (roundIndex === rounds - 1) {
       handleEndGame();
     }
-    console.log("Next round", targetKeys.length, roundIndex + 1);
-    console.log("Going to next round");
     setRoundIndex(roundIndex + 1);
     const target = shortcutInfo[roundIndex + 1]?.shortcut
       .split("+")
       .map((key: string) => key.trim().toLowerCase());
     if (target) {
-      console.log("New target", target);
       setTargetKeys(target);
       setTargetCombination(target.join("+"));
       setShorcutTitle(shortcutInfo[roundIndex + 1]?.title || "ERROR");
       setShortcutDescription(shortcutInfo[roundIndex + 1]?.description || "");
     } else {
-      console.log("No target found");
+      console.error("No target found");
     }
   };
 
@@ -63,27 +60,16 @@ const Home: NextPage = () => {
           const randomIndex = Math.floor(Math.random() * data.shortcuts.length);
           randomKeyCombinations.push(data.shortcuts[randomIndex]);
         }
-        console.log("Random key combinations", randomKeyCombinations);
-        console.log("Target keys", targetKeys);
 
         setShortcutInfo(randomKeyCombinations);
         const target = randomKeyCombinations[roundIndex].shortcut
           .split("+")
           .map((key: string) => key.trim().toLowerCase());
 
-        console.log("TARGET COMBO", target.join("+"));
         setTargetKeys(target);
         setTargetCombination(target.join("+"));
         setShorcutTitle(randomKeyCombinations[roundIndex].title);
         setShortcutDescription(randomKeyCombinations[roundIndex].description);
-
-        // // Set the target combination to the first key combination
-        // const targetCombination = randomKeyCombinations[0];
-        // console.log("Target combination", targetCombination);
-
-        // // Set the state
-        // setTargetKeys(targetKeys);
-        // setTargetCombination(targetCombination);
       },
       enabled: false,
     }
@@ -91,10 +77,6 @@ const Home: NextPage = () => {
   const handleStartGame = () => {
     keyCombinations.refetch();
   };
-
-  // if (keyCombinations.isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   if (keyCombinations.isError) {
     return <div>Error: {keyCombinations.error.message}</div>;

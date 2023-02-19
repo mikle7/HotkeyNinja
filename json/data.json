@@ -96,12 +96,7 @@
       "shortcut": "Control + S",
       "category": "File Management"
     },
-    {
-      "title": "New File",
-      "description": "Create a new file",
-      "shortcut": "Control + N",
-      "category": "File Management"
-    },
+
     {
       "title": "Open File",
       "description": "Open an existing file",
@@ -583,12 +578,7 @@
       "shortcut": "Control + Shift + H",
       "category": "Search and Replace"
     },
-    {
-      "title": "New File",
-      "description": "Create a new file in the workspace",
-      "shortcut": "Control + N",
-      "category": "File Management"
-    },
+
     {
       "title": "Open File",
       "description": "Open an existing file in the workspace",
@@ -607,12 +597,7 @@
       "shortcut": "Control + Shift + S",
       "category": "File Management"
     },
-    {
-      "title": "Close File",
-      "description": "Close the current file",
-      "shortcut": "Control + W",
-      "category": "File Management"
-    },
+
     {
       "title": "Close All Files",
       "description": "Close all files in the workspace",

@@ -1,7 +1,5 @@
-import type { NextPage } from "next";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import type { HotkeysEvent } from "react-hotkeys-hook/dist/types";
 import {
   BsAlt,
   BsArrowDown,
@@ -10,19 +8,25 @@ import {
   BsArrowUp,
   BsCommand,
   BsShift,
+  BsWindows,
 } from "react-icons/bs";
-import { Transition } from "@headlessui/react";
+
+const isMac =
+  typeof window !== "undefined"
+    ? navigator.platform.toUpperCase().indexOf("MAC") >= 0
+    : false;
+
+console.log("Is mac", isMac);
 
 const KeyIcons = {
   control: "Ctrl",
   shift: <BsShift />,
-  alt: <BsAlt />,
-  meta: <BsCommand />,
+  alt: isMac ? <BsAlt /> : "Alt",
+  meta: isMac ? <BsCommand /> : <BsWindows />,
   arrowup: <BsArrowUp />,
   arrowdown: <BsArrowDown />,
   arrowleft: <BsArrowLeft />,
   arrowright: <BsArrowRight />,
-  // alt: <BsAlt />,
 };
 type keyIcons = keyof typeof KeyIcons;
 
@@ -71,38 +75,29 @@ const Keys = ({
     event.preventDefault();
     let currentKey = event.key.toLowerCase();
 
+    // console.log("current key", currentKey);
+    // console.log("Expected key", targetKeys[keyIndex]?.toLowerCase());
+
     //TODO: Handle this better
     if (currentKey === "~") currentKey = "`";
+    if (currentKey === "{") currentKey = "[";
+    if (currentKey === "}") currentKey = "]";
 
     if (roundWon) return;
     if (event.type === "keydown") setKeysPressed([...keysPressed, currentKey]);
     setWrongKey(false);
-    console.log(
-      "event type",
-      [...correctCombo, currentKey].join("+"),
-      "Target",
-      targetCombination
-    );
 
     if ([...correctCombo, currentKey].join("+") === targetCombination) {
-      console.log("Correct combination!");
       setCorrectCombo([...correctCombo, currentKey]);
       handleNextRound();
       return;
     } else if (currentKey === targetKeys[keyIndex]?.toLowerCase()) {
       if (event.type !== "keyup") {
-        console.log("Correct key", currentKey);
         setCorrectCombo([...correctCombo, currentKey]);
         setKeyIndex((prev) => prev + 1);
       }
     } else {
       if (event.type === "keyup" && keysPressed.includes(currentKey)) {
-        console.log(
-          "WRONG KEY! Key pressed: ",
-          currentKey,
-          "Expected: ",
-          targetKeys[keyIndex]
-        );
         handleWrongKey();
       }
     }
@@ -134,7 +129,6 @@ const Keys = ({
                 key={i}
                 className={`  mx-2 flex h-16 w-32  items-center justify-center rounded-md border border-[#ffffff0d] bg-gradient-to-b from-background to-foreground p-4 text-center  font-medium uppercase text-white shadow-[0_0_0.375rem_0_rgba(0,0,0,0.25)] ${
                   (correctCombo.includes(key) || roundWon) &&
-                  // key === expectedKeys[currentExpectedKeyIndex] &&
                   " from-green to-green  "
                 }
                   `}
