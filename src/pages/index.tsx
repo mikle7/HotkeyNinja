@@ -2,21 +2,84 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import Keys from "../components/keys";
+import { trpc } from "../utils/trpc";
+
+type KeyCombinations = {
+  title: string;
+  description: string;
+  shortcut: string;
+  category: string;
+};
 
 const Home: NextPage = () => {
   const [roundIndex, setRoundIndex] = useState(0);
-  const targetKeys = [
-    ["control", "shift", "p"],
-    ["control", "shift", "k"],
-  ];
-  const targetCombination = targetKeys[roundIndex]?.join("+");
+  const [shortcutInfo, setShortcutInfo] = useState<KeyCombinations[]>([]);
+  const [targetKeys, setTargetKeys] = useState<string[]>([]);
+  const [targetCombination, setTargetCombination] = useState<string>("");
+  // const targetCombination = targetKeys[roundIndex]?.join("+");
 
   const handleNextRound = () => {
     console.log("Next round", targetKeys.length, roundIndex + 1);
-    if (targetKeys.length > roundIndex + 1) {
-      setRoundIndex(roundIndex + 1);
+    console.log("Going to next round");
+    setRoundIndex(roundIndex + 1);
+    const target = shortcutInfo[roundIndex + 1]?.shortcut
+      .split("+")
+      .map((key: string) => key.trim().toLowerCase());
+    if (target) {
+      console.log("New target", target);
+      setTargetKeys(target);
+      setTargetCombination(target.join("+"));
+    } else {
+      console.log("No target found");
     }
   };
+
+  const keyCombinations = trpc.example.getVsCodeKeyCombinations.useQuery(
+    undefined,
+    {
+      onSuccess: (data) => {
+        // Select 10 random key combinations and put them into state
+        const randomKeyCombinations = [];
+
+        for (let i = 0; i < 10; i++) {
+          const randomIndex = Math.floor(Math.random() * data.shortcuts.length);
+          randomKeyCombinations.push(data.shortcuts[randomIndex]);
+        }
+        console.log("Random key combinations", randomKeyCombinations);
+        console.log("Target keys", targetKeys);
+
+        setShortcutInfo(randomKeyCombinations);
+        const target = randomKeyCombinations[roundIndex].shortcut
+          .split("+")
+          .map((key: string) => key.trim().toLowerCase());
+
+        console.log("TARGET COMBO", target.join("+"));
+        setTargetKeys(target);
+        setTargetCombination(target.join("+"));
+
+        // // Set the target combination to the first key combination
+        // const targetCombination = randomKeyCombinations[0];
+        // console.log("Target combination", targetCombination);
+
+        // // Set the state
+        // setTargetKeys(targetKeys);
+        // setTargetCombination(targetCombination);
+      },
+      enabled: false,
+    }
+  );
+  const handleStartGame = () => {
+    keyCombinations.refetch();
+  };
+
+  // if (keyCombinations.isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  if (keyCombinations.isError) {
+    return <div>Error: {keyCombinations.error.message}</div>;
+  }
+
   return (
     <>
       <Head>
@@ -26,10 +89,13 @@ const Home: NextPage = () => {
       </Head>
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
         <Keys
-          targetKeys={targetKeys[roundIndex] || []}
+          targetKeys={targetKeys}
           targetCombination={targetCombination || ""}
           onNextRound={handleNextRound}
         />
+        <div onClick={handleStartGame} className="border p-4 text-white">
+          Start Game
+        </div>
       </main>
     </>
   );

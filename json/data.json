@@ -1,0 +1,665 @@
+{
+  "shortcuts": [
+    {
+      "title": "Toggle Sidebar",
+      "description": "Toggle the visibility of the sidebar",
+      "shortcut": "Control + B",
+      "category": "General"
+    },
+    {
+      "title": "Cut",
+      "description": "Cut the selected text or line",
+      "shortcut": "Control + X",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Copy",
+      "description": "Copy the selected text or line",
+      "shortcut": "Control + C",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Paste",
+      "description": "Paste the clipboard content",
+      "shortcut": "Control + V",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Undo",
+      "description": "Undo the last action",
+      "shortcut": "Control + Z",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Redo",
+      "description": "Redo the last action",
+      "shortcut": "Control + Y",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Go to Line",
+      "description": "Go to a specific line in the active file",
+      "shortcut": "Control + G",
+      "category": "Navigation"
+    },
+    {
+      "title": "Find",
+      "description": "Open the search box to find text in the active file",
+      "shortcut": "Control + F",
+      "category": "Search and Replace"
+    },
+    {
+      "title": "Replace",
+      "description": "Open the search box to find and replace text in the active file",
+      "shortcut": "Control + H",
+      "category": "Search and Replace"
+    },
+    {
+      "title": "Add Cursor Above",
+      "description": "Add a new cursor above the current one",
+      "shortcut": "Control + Alt + ArrowUp",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Add Cursor Below",
+      "description": "Add a new cursor below the current one",
+      "shortcut": "Control + Alt + ArrowDown",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Comment/Uncomment",
+      "description": "Toggle the comment status of the selected lines",
+      "shortcut": "Control + /",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Toggle Terminal",
+      "description": "Toggle the visibility of the integrated terminal",
+      "shortcut": "Control + `",
+      "category": "Terminal"
+    },
+    {
+      "title": "Toggle Full Screen",
+      "description": "Toggle full screen mode",
+      "shortcut": "F11",
+      "category": "Display"
+    },
+    {
+      "title": "Open Command Palette",
+      "description": "Open the command palette to execute commands",
+      "shortcut": "Control + Shift + P",
+      "category": "Editor Management"
+    },
+    {
+      "title": "Close Editor",
+      "description": "Close the active editor",
+      "shortcut": "Control + F4",
+      "category": "Editor Management"
+    },
+    {
+      "title": "Save",
+      "description": "Save the active file",
+      "shortcut": "Control + S",
+      "category": "File Management"
+    },
+    {
+      "title": "New File",
+      "description": "Create a new file",
+      "shortcut": "Control + N",
+      "category": "File Management"
+    },
+    {
+      "title": "Open File",
+      "description": "Open an existing file",
+      "shortcut": "Control + O",
+      "category": "File Management"
+    },
+    {
+      "title": "Open Folder",
+      "description": "Open a folder or workspace",
+      "shortcut": "Control + K, Control + O",
+      "category": "File Management"
+    },
+    {
+      "title": "Go to Symbol",
+      "description": "Go to a symbol (function, variable, etc.) in the active file",
+      "shortcut": "Control + Shift + O",
+      "category": "Navigation"
+    },
+    {
+      "title": "Go to Definition",
+      "description": "Go to the definition of the symbol at the cursor",
+      "shortcut": "F12",
+      "category": "Navigation"
+    },
+    {
+      "title": "Peek Definition",
+      "description": "Peek at the definition of the symbol at the cursor",
+      "shortcut": "Alt + F12",
+      "category": "Navigation"
+    },
+    {
+      "title": "Find All References",
+      "description": "Find all references to the symbol at the cursor",
+      "shortcut": "Shift + F12",
+      "category": "Navigation"
+    },
+    {
+      "title": "Toggle Line Comment",
+      "description": "Toggle the comment status of the current line",
+      "shortcut": "Control + /",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Toggle Block Comment",
+      "description": "Toggle the comment status of the selected block",
+      "shortcut": "Shift + Alt + A",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Indent",
+      "description": "Indent the selected lines or the current line",
+      "shortcut": "Tab",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Outdent",
+      "description": "Outdent the selected lines or the current line",
+      "shortcut": "Shift + Tab",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Toggle Word Wrap",
+      "description": "Toggle word wrapping for the active file",
+      "shortcut": "Alt + Z",
+      "category": "Display"
+    },
+
+    {
+      "title": "Zoom Out",
+      "description": "Zoom out on the text in the active editor",
+      "shortcut": "Control + -",
+      "category": "Display"
+    },
+    {
+      "title": "Reset Zoom",
+      "description": "Reset the zoom level for the active editor",
+      "shortcut": "Control + 0",
+      "category": "Display"
+    },
+    {
+      "title": "Start Debugging",
+      "description": "Start debugging the active file",
+      "shortcut": "F5",
+      "category": "Debug"
+    },
+    {
+      "title": "Stop Debugging",
+      "description": "Stop debugging the active file",
+      "shortcut": "Shift + F5",
+      "category": "Debug"
+    },
+    {
+      "title": "Step Over",
+      "description": "Step over the current line of code in the debugger",
+      "shortcut": "F10",
+      "category": "Debug"
+    },
+    {
+      "title": "Step Into",
+      "description": "Step into the current line of code in the debugger",
+      "shortcut": "F11",
+      "category": "Debug"
+    },
+    {
+      "title": "Step Out",
+      "description": "Step out of the current function in the debugger",
+      "shortcut": "Shift + F11",
+      "category": "Debug"
+    },
+    {
+      "title": "Toggle Breakpoint",
+      "description": "Toggle a breakpoint on the current line of code",
+      "shortcut": "F9",
+      "category": "Debug"
+    },
+    {
+      "title": "Run to Cursor",
+      "description": "Run the debugger to the cursor position",
+      "shortcut": "Control + F10",
+      "category": "Debug"
+    },
+    {
+      "title": "Toggle Integrated Terminal",
+      "description": "Toggle the visibility of the integrated terminal",
+      "shortcut": "Control + `",
+      "category": "Terminal"
+    },
+    {
+      "title": "Split Editor",
+      "description": "Split the active editor into two horizontal panes",
+      "shortcut": "Control + \\",
+      "category": "Editor Management"
+    },
+    {
+      "title": "Split Editor (Vertical)",
+      "description": "Split the active editor into two vertical panes",
+      "shortcut": "Control + Alt + \\",
+      "category": "Editor Management"
+    },
+    {
+      "title": "Toggle Side Bar",
+      "description": "Toggle the visibility of the side bar",
+      "shortcut": "Control + B",
+      "category": "General"
+    },
+    {
+      "title": "Quick Open",
+      "description": "Open a file or symbol quickly with fuzzy search",
+      "shortcut": "Control + P",
+      "category": "General"
+    },
+    {
+      "title": "Show All Commands",
+      "description": "Show all available commands in the command palette",
+      "shortcut": "Control + Shift + P, F1",
+      "category": "General"
+    },
+    {
+      "title": "Format Document",
+      "description": "Format the entire active document",
+      "shortcut": "Shift + Alt + F",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Format Selection",
+      "description": "Format the selected code",
+      "shortcut": "Control + K, Control + F",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Toggle Line Numbers",
+      "description": "Toggle line numbers in the active editor",
+      "shortcut": "Control + Shift + X",
+      "category": "Display"
+    },
+    {
+      "title": "Toggle Panel",
+      "description": "Toggle the visibility of the panel",
+      "shortcut": "Control + J",
+      "category": "Display"
+    },
+    {
+      "title": "Move Line Up",
+      "description": "Move the current line up one line",
+      "shortcut": "Alt + ArrowUp",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Move Line Down",
+      "description": "Move the current line down one line",
+      "shortcut": "Alt + ArrowDown",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Copy Line Up",
+      "description": "Copy the current line up one line",
+      "shortcut": "Shift + Alt + ArrowUp",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Copy Line Down",
+      "description": "Copy the current line down one line",
+      "shortcut": "Shift + Alt + ArrowDown",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Delete Line",
+      "description": "Delete the current line",
+      "shortcut": "Control + Shift + K",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Select All Occurrences",
+      "description": "Select all occurrences of the current word",
+      "shortcut": "Control + Shift + L",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Toggle Bookmark",
+      "description": "Toggle a bookmark on the current line",
+      "shortcut": "Control + F2",
+      "category": "Navigation"
+    },
+    {
+      "title": "Next Bookmark",
+      "description": "Go to the next bookmark in the file",
+      "shortcut": "F2",
+      "category": "Navigation"
+    },
+    {
+      "title": "Previous Bookmark",
+      "description": "Go to the previous bookmark in the file",
+      "shortcut": "Shift + F2",
+      "category": "Navigation"
+    },
+    {
+      "title": "Jump to Bracket",
+      "description": "Jump to the matching bracket",
+      "shortcut": "Control + Shift + \\",
+      "category": "Navigation"
+    },
+    {
+      "title": "Fold",
+      "description": "Fold the current block of code",
+      "shortcut": "Control + Shift + [",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Unfold",
+      "description": "Unfold the current block of code",
+      "shortcut": "Control + Shift + ]",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Show/Hide Status Bar",
+      "description": "Toggle the visibility of the status bar",
+      "shortcut": "Control + Shift + F",
+      "category": "Display"
+    },
+    {
+      "title": "Add Selection To Next Find Match",
+      "description": "Add the next occurrence of the search term to the selection",
+      "shortcut": "Control + D",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Select All",
+      "description": "Select the entire active file",
+      "shortcut": "Control + A",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Go to Next Problem",
+      "description": "Go to the next problem in the active file",
+      "shortcut": "F8",
+      "category": "Navigation"
+    },
+    {
+      "title": "Go to Previous Problem",
+      "description": "Go to the previous problem in the active file",
+      "shortcut": "Shift + F8",
+      "category": "Navigation"
+    },
+    {
+      "title": "Scroll Line Up",
+      "description": "Scroll the active editor up one line",
+      "shortcut": "Control + ArrowUp",
+      "category": "Navigation"
+    },
+    {
+      "title": "Go to Previous Problem",
+      "description": "Go to the previous problem in the active file",
+      "shortcut": "Shift + F8",
+      "category": "Navigation"
+    },
+    {
+      "title": "Scroll Line Up",
+      "description": "Scroll the active editor up one line",
+      "shortcut": "Control + ArrowUp",
+      "category": "Navigation"
+    },
+    {
+      "title": "Scroll Line Down",
+      "description": "Scroll the active editor down one line",
+      "shortcut": "Control + ArrowDown",
+      "category": "Navigation"
+    },
+    {
+      "title": "Scroll Page Up",
+      "description": "Scroll the active editor up one page",
+      "shortcut": "PageUp",
+      "category": "Navigation"
+    },
+    {
+      "title": "Scroll Page Down",
+      "description": "Scroll the active editor down one page",
+      "shortcut": "PageDown",
+      "category": "Navigation"
+    },
+    {
+      "title": "Fold All",
+      "description": "Fold all blocks of code in the active editor",
+      "shortcut": "Control + K, Control + 0",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Unfold All",
+      "description": "Unfold all blocks of code in the active editor",
+      "shortcut": "Control + K, Control + J",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Move Cursor to Top of File",
+      "description": "Move the cursor to the top of the active file",
+      "shortcut": "Control + Home",
+      "category": "Navigation"
+    },
+    {
+      "title": "Move Cursor to Bottom of File",
+      "description": "Move the cursor to the bottom of the active file",
+      "shortcut": "Control + End",
+      "category": "Navigation"
+    },
+    {
+      "title": "Rename Symbol",
+      "description": "Rename a symbol (function, variable, etc.) in the active file",
+      "shortcut": "F2",
+      "category": "Rich Language Editing"
+    },
+    {
+      "title": "Go to Line",
+      "description": "Go to a specific line number in the active file",
+      "shortcut": "Control + G",
+      "category": "Navigation"
+    },
+    {
+      "title": "Open Command Palette",
+      "description": "Open the command palette to run any command",
+      "shortcut": "Control + Shift + P",
+      "category": "General"
+    },
+    {
+      "title": "Select Line",
+      "description": "Select the current line",
+      "shortcut": "Control + L",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Jump to Next Word",
+      "description": "Jump to the next word in the active editor",
+      "shortcut": "Control + ArrowRight",
+      "category": "Navigation"
+    },
+    {
+      "title": "Jump to Previous Word",
+      "description": "Jump to the previous word in the active editor",
+      "shortcut": "Control + ArrowLeft",
+      "category": "Navigation"
+    },
+    {
+      "title": "Move Cursor to Next Word",
+      "description": "Move the cursor to the next word in the active editor",
+      "shortcut": "Control + Shift + ArrowRight",
+      "category": "Navigation"
+    },
+    {
+      "title": "Move Cursor to Previous Word",
+      "description": "Move the cursor to the previous word in the active editor",
+      "shortcut": "Control + Shift + ArrowLeft",
+      "category": "Navigation"
+    },
+    {
+      "title": "Go to Definition",
+      "description": "Go to the definition of the current symbol (function, variable, etc.)",
+      "shortcut": "F12",
+      "category": "Navigation"
+    },
+    {
+      "title": "Peek Definition",
+      "description": "Peek at the definition of the current symbol",
+      "shortcut": "Alt + F12",
+      "category": "Navigation"
+    },
+    {
+      "title": "Toggle Comment",
+      "description": "Toggle a comment on the current line or selection",
+      "shortcut": "Control + /",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Toggle Block Comment",
+      "description": "Toggle a block comment on the selected code",
+      "shortcut": "Shift + Alt + A",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Cut",
+      "description": "Cut the selected code or text",
+      "shortcut": "Control + X",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Copy",
+      "description": "Copy the selected code or text",
+      "shortcut": "Control + C",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Paste",
+      "description": "Paste the copied code or text",
+      "shortcut": "Control + V",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Undo",
+      "description": "Undo the last action",
+      "shortcut": "Control + Z",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Redo",
+      "description": "Redo the last action",
+      "shortcut": "Control + Y",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Select All Occurrences of Find Match",
+      "description": "Select all occurrences of the search term in the active file",
+      "shortcut": "Control + Shift + L",
+      "category": "Mult-Cursor and Selection"
+    },
+    {
+      "title": "Delete Word Right",
+      "description": "Delete the word to the right of the cursor",
+      "shortcut": "Control + Delete",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Delete Word Left",
+      "description": "Delete the word to the left of the cursor",
+      "shortcut": "Control + Backspace",
+      "category": "Basic Editing"
+    },
+    {
+      "title": "Replace",
+      "description": "Open the search and replace widget",
+      "shortcut": "Control + H",
+      "category": "Search and Replace"
+    },
+    {
+      "title": "Find in Files",
+      "description": "Search for a term in all files in the workspace",
+      "shortcut": "Control + Shift + F",
+      "category": "Search and Replace"
+    },
+    {
+      "title": "Replace All",
+      "description": "Replace all occurrences of the search term",
+      "shortcut": "Control + Shift + H",
+      "category": "Search and Replace"
+    },
+    {
+      "title": "New File",
+      "description": "Create a new file in the workspace",
+      "shortcut": "Control + N",
+      "category": "File Management"
+    },
+    {
+      "title": "Open File",
+      "description": "Open an existing file in the workspace",
+      "shortcut": "Control + O",
+      "category": "File Management"
+    },
+    {
+      "title": "Save File",
+      "description": "Save the current file",
+      "shortcut": "Control + S",
+      "category": "File Management"
+    },
+    {
+      "title": "Save As",
+      "description": "Save the current file with a different name or location",
+      "shortcut": "Control + Shift + S",
+      "category": "File Management"
+    },
+    {
+      "title": "Close File",
+      "description": "Close the current file",
+      "shortcut": "Control + W",
+      "category": "File Management"
+    },
+    {
+      "title": "Close All Files",
+      "description": "Close all files in the workspace",
+      "shortcut": "Control + K, Control + W",
+      "category": "File Management"
+    },
+    {
+      "title": "Open Integrated Terminal",
+      "description": "Open an integrated terminal in the workspace",
+      "shortcut": "Control + Shift + `",
+      "category": "Terminal"
+    },
+    {
+      "title": "Run",
+      "description": "Run the current script or application",
+      "shortcut": "F5",
+      "category": "Debug"
+    },
+    {
+      "title": "Debug",
+      "description": "Start debugging the current script or application",
+      "shortcut": "F9",
+      "category": "Debug"
+    },
+    {
+      "title": "Step Over",
+      "description": "Step over the current line while debugging",
+      "shortcut": "F10",
+      "category": "Debug"
+    },
+    {
+      "title": "Step Into",
+      "description": "Step into the current line while debugging",
+      "shortcut": "F11",
+      "category": "Debug"
+    },
+    {
+      "title": "Step Out",
+      "description": "Step out of the current function while debugging",
+      "shortcut": "Shift + F11",
+      "category": "Debug"
+    }
+  ]
+}

@@ -33,9 +33,6 @@ const Keys = ({
   const [correctCombo, setCorrectCombo] = useState<string[]>([]);
   const [isShowing, setIsShowing] = useState(false);
 
-  console.log("Target combination", targetCombination);
-  console.log("targetKeys", targetKeys);
-
   const handleWrongKey = () => {
     setWrongKey(true);
     setCorrectCombo([]);
@@ -60,38 +57,37 @@ const Keys = ({
 
   const handleKey = (event: KeyboardEvent) => {
     event.preventDefault();
+    const currentKey = event.key.toLowerCase();
+
     if (roundWon) return;
-    if (event.type === "keydown")
-      setKeysPressed([...keysPressed, event.key.toLowerCase()]);
+    if (event.type === "keydown") setKeysPressed([...keysPressed, currentKey]);
     setWrongKey(false);
     console.log(
       "event type",
-      [...correctCombo, event.key.toLowerCase()].join("+"),
+      [...correctCombo, currentKey].join("+"),
       "Target",
       targetCombination
     );
 
-    if (
-      [...correctCombo, event.key.toLowerCase()].join("+") === targetCombination
-    ) {
+    if ([...correctCombo, currentKey].join("+") === targetCombination) {
       console.log("Correct combination!");
-      setCorrectCombo([...correctCombo, event.key.toLowerCase()]);
+      setCorrectCombo([...correctCombo, currentKey]);
       handleNextRound();
       return;
-    } else if (
-      event.key.toLowerCase() === targetKeys[keyIndex]?.toLowerCase()
-    ) {
+    } else if (currentKey === targetKeys[keyIndex]?.toLowerCase()) {
       if (event.type !== "keyup") {
-        console.log("Correct key", event.key);
-        setCorrectCombo([...correctCombo, event.key.toLowerCase()]);
+        console.log("Correct key", currentKey);
+        setCorrectCombo([...correctCombo, currentKey]);
         setKeyIndex((prev) => prev + 1);
       }
     } else {
-      if (
-        event.type === "keyup" &&
-        keysPressed.includes(event.key.toLowerCase())
-      ) {
-        console.log("WRONG KEY", event.key, targetKeys[keyIndex]);
+      if (event.type === "keyup" && keysPressed.includes(currentKey)) {
+        console.log(
+          "WRONG KEY! Key pressed: ",
+          currentKey,
+          "Expected: ",
+          targetKeys[keyIndex]
+        );
         handleWrongKey();
       }
     }
