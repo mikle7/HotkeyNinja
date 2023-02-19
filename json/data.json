@@ -85,12 +85,6 @@
       "category": "Display"
     },
     {
-      "title": "Open Command Palette",
-      "description": "Open the command palette to execute commands",
-      "shortcut": "Control + Shift + P",
-      "category": "Editor Management"
-    },
-    {
       "title": "Close Editor",
       "description": "Close the active editor",
       "shortcut": "Control + F4",
@@ -117,7 +111,7 @@
     {
       "title": "Open Folder",
       "description": "Open a folder or workspace",
-      "shortcut": "Control + K, Control + O",
+      "shortcut": "Control + K + O",
       "category": "File Management"
     },
     {
@@ -262,7 +256,7 @@
     {
       "title": "Show All Commands",
       "description": "Show all available commands in the command palette",
-      "shortcut": "Control + Shift + P, F1",
+      "shortcut": "F1",
       "category": "General"
     },
     {
@@ -274,7 +268,7 @@
     {
       "title": "Format Selection",
       "description": "Format the selected code",
-      "shortcut": "Control + K, Control + F",
+      "shortcut": "Control + K + F",
       "category": "Rich Language Editing"
     },
     {
@@ -430,13 +424,13 @@
     {
       "title": "Fold All",
       "description": "Fold all blocks of code in the active editor",
-      "shortcut": "Control + K, Control + 0",
+      "shortcut": "Control + K + 0",
       "category": "Rich Language Editing"
     },
     {
       "title": "Unfold All",
       "description": "Unfold all blocks of code in the active editor",
-      "shortcut": "Control + K, Control + J",
+      "shortcut": "Control + K + J",
       "category": "Rich Language Editing"
     },
     {
@@ -622,7 +616,7 @@
     {
       "title": "Close All Files",
       "description": "Close all files in the workspace",
-      "shortcut": "Control + K, Control + W",
+      "shortcut": "Control + K + W",
       "category": "File Management"
     },
     {

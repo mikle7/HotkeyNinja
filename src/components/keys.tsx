@@ -2,7 +2,15 @@ import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import type { HotkeysEvent } from "react-hotkeys-hook/dist/types";
-import { BsAlt, BsCommand, BsShift } from "react-icons/bs";
+import {
+  BsAlt,
+  BsArrowDown,
+  BsArrowLeft,
+  BsArrowRight,
+  BsArrowUp,
+  BsCommand,
+  BsShift,
+} from "react-icons/bs";
 import { Transition } from "@headlessui/react";
 
 const KeyIcons = {
@@ -10,20 +18,25 @@ const KeyIcons = {
   shift: <BsShift />,
   alt: <BsAlt />,
   meta: <BsCommand />,
+  arrowup: <BsArrowUp />,
+  arrowdown: <BsArrowDown />,
+  arrowleft: <BsArrowLeft />,
+  arrowright: <BsArrowRight />,
   // alt: <BsAlt />,
 };
-
-type KeyProps = {
-  targetKeys: string[];
-};
+type keyIcons = keyof typeof KeyIcons;
 
 const Keys = ({
   targetKeys,
   targetCombination,
+  shortcutTitle,
+  shortcutDescription,
   onNextRound,
 }: {
   targetKeys: string[];
   targetCombination: string;
+  shortcutTitle: string;
+  shortcutDescription: string;
   onNextRound: () => void;
 }) => {
   const [keysPressed, setKeysPressed] = useState<string[]>([]);
@@ -31,7 +44,6 @@ const Keys = ({
   const [wrongKey, setWrongKey] = useState(false);
   const [roundWon, setRoundWon] = useState(false);
   const [correctCombo, setCorrectCombo] = useState<string[]>([]);
-  const [isShowing, setIsShowing] = useState(false);
 
   const handleWrongKey = () => {
     setWrongKey(true);
@@ -57,7 +69,10 @@ const Keys = ({
 
   const handleKey = (event: KeyboardEvent) => {
     event.preventDefault();
-    const currentKey = event.key.toLowerCase();
+    let currentKey = event.key.toLowerCase();
+
+    //TODO: Handle this better
+    if (currentKey === "~") currentKey = "`";
 
     if (roundWon) return;
     if (event.type === "keydown") setKeysPressed([...keysPressed, currentKey]);
@@ -101,12 +116,15 @@ const Keys = ({
 
   return (
     <div>
-      <p>Expected keys: {targetKeys.join(", ")}</p>
-      <p>Keys pressed: {keysPressed.join(", ")}</p>
-
       <div className="flex  flex-col items-center justify-center">
+        <div>
+          <p className="text-3xl font-medium text-white">{shortcutTitle}</p>
+        </div>
+        <div>
+          <p className="text-md text-slate-400">{shortcutDescription}</p>
+        </div>
         <div
-          className={` mt-8 grid w-60 grid-flow-col ${
+          className={`mt-8 grid w-60 grid-flow-col justify-center ${
             wrongKey && "animate-shake"
           }`}
         >
@@ -114,7 +132,7 @@ const Keys = ({
             return (
               <div
                 key={i}
-                className={`  mx-2 flex h-14 w-fit items-center justify-center rounded-md border border-[#ffffff0d] bg-gradient-to-b from-background to-foreground p-4 text-center  font-medium uppercase text-white shadow-[0_0_0.375rem_0_rgba(0,0,0,0.25)] ${
+                className={`  mx-2 flex h-16 w-32  items-center justify-center rounded-md border border-[#ffffff0d] bg-gradient-to-b from-background to-foreground p-4 text-center  font-medium uppercase text-white shadow-[0_0_0.375rem_0_rgba(0,0,0,0.25)] ${
                   (correctCombo.includes(key) || roundWon) &&
                   // key === expectedKeys[currentExpectedKeyIndex] &&
                   " from-green to-green  "
@@ -128,15 +146,12 @@ const Keys = ({
                   }
                    `}
                 >
-                  {key}
+                  {KeyIcons[key as keyIcons] ?? key}
                 </p>
               </div>
             );
           })}
         </div>
-        <button onClick={() => setIsShowing((isShowing) => !isShowing)}>
-          Toggle
-        </button>
       </div>
     </div>
   );

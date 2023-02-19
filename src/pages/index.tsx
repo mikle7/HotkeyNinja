@@ -16,9 +16,25 @@ const Home: NextPage = () => {
   const [shortcutInfo, setShortcutInfo] = useState<KeyCombinations[]>([]);
   const [targetKeys, setTargetKeys] = useState<string[]>([]);
   const [targetCombination, setTargetCombination] = useState<string>("");
-  // const targetCombination = targetKeys[roundIndex]?.join("+");
+  const [shortcutTitle, setShorcutTitle] = useState<string>("");
+  const [shortcutDescription, setShortcutDescription] = useState<string>("");
+  const rounds = 10;
+  const [gameOver, setGameOver] = useState(false);
+
+  const handleEndGame = () => {
+    setGameOver(true);
+    setTargetCombination("");
+    setTargetKeys([]);
+    setShortcutInfo([]);
+    setShorcutTitle("");
+    setShortcutDescription("");
+    setRoundIndex(0);
+  };
 
   const handleNextRound = () => {
+    if (roundIndex === rounds - 1) {
+      handleEndGame();
+    }
     console.log("Next round", targetKeys.length, roundIndex + 1);
     console.log("Going to next round");
     setRoundIndex(roundIndex + 1);
@@ -29,6 +45,8 @@ const Home: NextPage = () => {
       console.log("New target", target);
       setTargetKeys(target);
       setTargetCombination(target.join("+"));
+      setShorcutTitle(shortcutInfo[roundIndex + 1]?.title || "ERROR");
+      setShortcutDescription(shortcutInfo[roundIndex + 1]?.description || "");
     } else {
       console.log("No target found");
     }
@@ -56,6 +74,8 @@ const Home: NextPage = () => {
         console.log("TARGET COMBO", target.join("+"));
         setTargetKeys(target);
         setTargetCombination(target.join("+"));
+        setShorcutTitle(randomKeyCombinations[roundIndex].title);
+        setShortcutDescription(randomKeyCombinations[roundIndex].description);
 
         // // Set the target combination to the first key combination
         // const targetCombination = randomKeyCombinations[0];
@@ -91,10 +111,15 @@ const Home: NextPage = () => {
         <Keys
           targetKeys={targetKeys}
           targetCombination={targetCombination || ""}
+          shortcutTitle={shortcutTitle}
+          shortcutDescription={shortcutDescription}
           onNextRound={handleNextRound}
         />
-        <div onClick={handleStartGame} className="border p-4 text-white">
-          Start Game
+        <div
+          onClick={gameOver ? handleStartGame : handleEndGame}
+          className="mt-8 rounded-md border border-slate-600 p-4 text-white hover:cursor-pointer hover:border-slate-800 hover:bg-slate-800"
+        >
+          {gameOver ? "Start Game" : "End Game"}
         </div>
       </main>
     </>
