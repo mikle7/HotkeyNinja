@@ -20,8 +20,10 @@ const Home: NextPage = () => {
   const [shortcutDescription, setShortcutDescription] = useState<string>("");
   const rounds = 10;
   const [gameOver, setGameOver] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleEndGame = () => {
+    setIsPlaying(false);
     setGameOver(true);
     setTargetCombination("");
     setTargetKeys([]);
@@ -75,6 +77,7 @@ const Home: NextPage = () => {
     }
   );
   const handleStartGame = () => {
+    setIsPlaying(true);
     keyCombinations.refetch();
   };
 
@@ -98,10 +101,10 @@ const Home: NextPage = () => {
           onNextRound={handleNextRound}
         />
         <div
-          onClick={gameOver ? handleStartGame : handleEndGame}
+          onClick={isPlaying ? handleEndGame : handleStartGame}
           className="mt-8 rounded-md border border-slate-600 p-4 text-white hover:cursor-pointer hover:border-slate-800 hover:bg-slate-800"
         >
-          {gameOver ? "Start Game" : "End Game"}
+          {isPlaying ? "End Game" : "Start Game"}
         </div>
       </main>
     </>
