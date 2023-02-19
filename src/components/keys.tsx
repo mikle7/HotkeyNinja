@@ -48,18 +48,19 @@ const Keys = ({
   const handleNextRound = () => {
     //TODO: Handle incorrect keys for stats later
     setRoundWon(true);
-    setKeysPressed([]);
-    setCorrectCombo([]);
-    setKeyIndex(0);
-    onNextRound();
 
     setTimeout(() => {
       setRoundWon(false);
-    }, 3000);
+      setKeysPressed([]);
+      setCorrectCombo([]);
+      setKeyIndex(0);
+      onNextRound();
+    }, 200);
   };
 
   const handleKey = (event: KeyboardEvent) => {
     event.preventDefault();
+    if (roundWon) return;
     if (event.type === "keydown")
       setKeysPressed([...keysPressed, event.key.toLowerCase()]);
     setWrongKey(false);
@@ -118,7 +119,7 @@ const Keys = ({
               <div
                 key={i}
                 className={`  mx-2 flex h-14 w-fit items-center justify-center rounded-md border border-[#ffffff0d] bg-gradient-to-b from-background to-foreground p-4 text-center  font-medium uppercase text-white shadow-[0_0_0.375rem_0_rgba(0,0,0,0.25)] ${
-                  correctCombo.includes(key) &&
+                  (correctCombo.includes(key) || roundWon) &&
                   // key === expectedKeys[currentExpectedKeyIndex] &&
                   " from-green to-green  "
                 }
