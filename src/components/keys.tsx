@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import type { HotkeysEvent } from "react-hotkeys-hook/dist/types";
 import { BsAlt, BsCommand, BsShift } from "react-icons/bs";
+import { Transition } from "@headlessui/react";
 
 const KeyIcons = {
   control: "Ctrl",
@@ -19,61 +20,87 @@ type KeyProps = {
 const Keys = ({
   targetKeys,
   targetCombination,
+  onNextRound,
 }: {
   targetKeys: string[];
   targetCombination: string;
+  onNextRound: () => void;
 }) => {
   const [keysPressed, setKeysPressed] = useState<string[]>([]);
   const [keyIndex, setKeyIndex] = useState(0);
   const [wrongKey, setWrongKey] = useState(false);
-  // const keyIndex = 0;
+  const [roundWon, setRoundWon] = useState(false);
+  const [correctCombo, setCorrectCombo] = useState<string[]>([]);
+  const [isShowing, setIsShowing] = useState(false);
 
-  useHotkeys(
-    "*",
-    (event: KeyboardEvent) => {
-      if (event.key.toLowerCase() !== targetKeys[keyIndex]?.toLowerCase()) {
-        // Handle wrong keys
-        setWrongKey(true);
-        setKeysPressed([]);
-        setKeyIndex(0);
-        setTimeout(() => {
-          setWrongKey(false);
-        }, 1000);
-        // setWrongKey(false);
-      }
-    },
-    { preventDefault: true }
-  );
+  console.log("Target combination", targetCombination);
+  console.log("targetKeys", targetKeys);
 
-  // Individually add the keystrokes but then for each iteration it also adds in the previous keystroke to the string
-  // like this: ctrl, ctrl+shift, ctrl+shift+up
-
-  const handleKey = useCallback(
-    (event: KeyboardEvent) => {
+  const handleWrongKey = () => {
+    setWrongKey(true);
+    setCorrectCombo([]);
+    setKeyIndex(0);
+    setTimeout(() => {
       setWrongKey(false);
+    }, 1000);
+  };
 
-      if (event.key.toLowerCase() === targetKeys[keyIndex]?.toLowerCase()) {
-        if (
-          [...keysPressed, event.key.toLowerCase()].join("+") ===
-          targetCombination
-        ) {
-          // Full combination, can move to next game
-          console.log("Correct!");
-          setKeyIndex(0);
-          setKeysPressed([]);
-        }
-        console.log("Correct key", keysPressed, event.key);
-        setKeysPressed([...keysPressed, event.key.toLowerCase()]);
+  const handleNextRound = () => {
+    //TODO: Handle incorrect keys for stats later
+    setRoundWon(true);
+    setKeysPressed([]);
+    setCorrectCombo([]);
+    setKeyIndex(0);
+    onNextRound();
 
+    setTimeout(() => {
+      setRoundWon(false);
+    }, 3000);
+  };
+
+  const handleKey = (event: KeyboardEvent) => {
+    event.preventDefault();
+    if (event.type === "keydown")
+      setKeysPressed([...keysPressed, event.key.toLowerCase()]);
+    setWrongKey(false);
+    console.log(
+      "event type",
+      [...correctCombo, event.key.toLowerCase()].join("+"),
+      "Target",
+      targetCombination
+    );
+
+    if (
+      [...correctCombo, event.key.toLowerCase()].join("+") === targetCombination
+    ) {
+      console.log("Correct combination!");
+      setCorrectCombo([...correctCombo, event.key.toLowerCase()]);
+      handleNextRound();
+      return;
+    } else if (
+      event.key.toLowerCase() === targetKeys[keyIndex]?.toLowerCase()
+    ) {
+      if (event.type !== "keyup") {
+        console.log("Correct key", event.key);
+        setCorrectCombo([...correctCombo, event.key.toLowerCase()]);
         setKeyIndex((prev) => prev + 1);
       }
-    },
-    [keyIndex, keysPressed, targetKeys, targetCombination]
-  );
+    } else {
+      if (
+        event.type === "keyup" &&
+        keysPressed.includes(event.key.toLowerCase())
+      ) {
+        console.log("WRONG KEY", event.key, targetKeys[keyIndex]);
+        handleWrongKey();
+      }
+    }
+  };
 
-  console.log("Keys Pressed", keysPressed);
-
-  useHotkeys([...targetKeys, targetCombination], handleKey, {});
+  useHotkeys(["*", targetCombination], handleKey, {
+    keyup: true,
+    keydown: true,
+    preventDefault: true,
+  });
 
   return (
     <div>
@@ -91,18 +118,18 @@ const Keys = ({
               <div
                 key={i}
                 className={`  mx-2 flex h-14 w-fit items-center justify-center rounded-md border border-[#ffffff0d] bg-gradient-to-b from-background to-foreground p-4 text-center  font-medium uppercase text-white shadow-[0_0_0.375rem_0_rgba(0,0,0,0.25)] ${
-                  keysPressed.includes(key) &&
+                  correctCombo.includes(key) &&
                   // key === expectedKeys[currentExpectedKeyIndex] &&
                   " from-green to-green  "
                 }
-
-
                   `}
               >
                 <p
-                  className={` text-2xl ${
-                    !keysPressed.includes(key) && "animate-fade"
-                  }`}
+                  key={`${key}-${i}`}
+                  className={`  text-2xl ${
+                    !keysPressed.includes(key) ? "animate-fade" : null
+                  }
+                   `}
                 >
                   {key}
                 </p>
@@ -110,6 +137,9 @@ const Keys = ({
             );
           })}
         </div>
+        <button onClick={() => setIsShowing((isShowing) => !isShowing)}>
+          Toggle
+        </button>
       </div>
     </div>
   );

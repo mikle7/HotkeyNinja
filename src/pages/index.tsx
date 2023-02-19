@@ -1,10 +1,22 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import Keys from "../components/keys";
 
 const Home: NextPage = () => {
-  const targetKeys = ["control", "shift", "p"];
-  const targetCombination = targetKeys.join("+");
+  const [roundIndex, setRoundIndex] = useState(0);
+  const targetKeys = [
+    ["control", "shift", "p"],
+    ["control", "shift", "k"],
+  ];
+  const targetCombination = targetKeys[roundIndex]?.join("+");
+
+  const handleNextRound = () => {
+    console.log("Next round", targetKeys.length, roundIndex + 1);
+    if (targetKeys.length > roundIndex + 1) {
+      setRoundIndex(roundIndex + 1);
+    }
+  };
   return (
     <>
       <Head>
@@ -13,7 +25,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
-        <Keys targetKeys={targetKeys} targetCombination={targetCombination} />
+        <Keys
+          targetKeys={targetKeys[roundIndex] || []}
+          targetCombination={targetCombination || ""}
+          onNextRound={handleNextRound}
+        />
       </main>
     </>
   );
